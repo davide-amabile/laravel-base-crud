@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
             $table->string("author", 50);
             $table->string("genre", 30);
             $table->string("edition", 50);
-            $table->smallInteger("page");
+            $table->smallInteger("pages");
             $table->string("image");
             $table->date("year");
             $table->timestamps();
