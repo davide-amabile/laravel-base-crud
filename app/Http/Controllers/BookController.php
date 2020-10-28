@@ -36,7 +36,32 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        
+        $request->validate([
+            'title' => "required|max:30",
+            'author' => "required|max:50",
+            'pages' => "required|integer",
+            'edition' => "required|max:50",
+            'year' => "required|date",
+            'isbn' => "required|unique:books|max:13",
+            'genre' => "required|max:30",
+            'image' => "required",
+        ]);
+        
+        $book = new Book;
+        $book->title = $data['title'];
+        $book->author = $data['author'];
+        $book->pages = $data['pages'];
+        $book->edition = $data['edition'];
+        $book->year = $data['year'];
+        $book->isbn = $data['isbn'];
+        $book->genre = $data['genre'];
+        $book->image = $data['image'];
+
+        $book->save();
+
+        return redirect()->route('books.show', $book);
     }
 
     /**
